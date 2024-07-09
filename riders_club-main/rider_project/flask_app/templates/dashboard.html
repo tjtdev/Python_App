@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Dashboard</title>
+</head>
+
+<body data-bs-theme="dark">
+
+    <div class="container mt-5">
+        <div class="row">
+            <div style="display: flex" class="col">
+                <div class="col">
+                    <h1 class="">Hello {{user_info.first_name}}!</h1>
+                    <br>
+                    <h2>Attendance:</h2>
+                    <div class="">
+                        
+                    </div>
+                    <a href="/logout" class="btn btn-danger float-end">Logout</a> 
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Attendance</th>
+            <!-- <th scope="col">End Date</th> -->
+            <th scope="col">Created By</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for entries in all_entries %}
+        <tr>
+            <th scope='row'>{{entries.attendance_date}}</th>
+            <td scope='row'>{{entries.attendance}}</td>
+            <!-- <td scope='row'>{{entries.end_date}}</td> -->
+            <td scope='row'>{{entries.owner.first_name }}</td>
+        
+            {% if entries.users_id == session['user_id'] %}
+                <td>
+                    <a href="/entries/show/{{entries.id}}">Show</a>
+                    <a href="/entries/edit/{{entries.id}}">Update</a>
+                    
+                </td>
+            {% else %}
+            <td>
+                <a href="/entries/show/{{entries.id}}">Show</a>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+    <a href="/entries" class="btn btn-info ">Register for Meeting</a>
+
+</body>
+
+</html>
