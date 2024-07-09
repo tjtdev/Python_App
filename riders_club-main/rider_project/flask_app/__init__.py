@@ -2,6 +2,6 @@
 from flask import Flask
 #creating a variable to not have to type Flask(__name__) all the time!
 app=Flask(__name__)
-app.secret_key = "GroundControlToMajorTom"
+app.secret_key = ""
 
-DB = "riders_schema"
+DB = ""
